@@ -1,0 +1,22 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+  {% block body_block %}
+    <div class="jumbotron">
+      <!-- El diccionario de contexto debe de contener una clave registered -->
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register here!</h1>
+        <h2>Fill out the form:</h2>
+
+        <!-- Para que funcione la carga de imagenes hay que habilitar el enctype -->
+        <form method="post", enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ user_form.as_p}}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" value="Register">
+        </form>
+      {% endif %}
+    </div>
+  {% endblock %}
